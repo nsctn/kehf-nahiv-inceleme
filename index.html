@@ -1218,7 +1218,7 @@ function inspectWord(verseId, wordIdx) {
   else if (stat.includes('meczum')) badgeClass = 'badge-meczum';
   else if (stat.includes('mebni')) badgeClass = 'badge-mebni';
   
-  irabBadge.innerHTML = `<span class="badge ${badgeClass}">${w.irab_status || 'Mu'reb'}</span>`;
+  irabBadge.innerHTML = `<span class="badge ${badgeClass}">${w.irab_status || "Mu'reb"}</span>`;
   
   document.getElementById('wordModal').classList.add('active');
 }
