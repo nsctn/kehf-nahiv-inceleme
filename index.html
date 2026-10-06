@@ -870,6 +870,10 @@ footer a {
       <input type="text" id="searchInput" placeholder="Ayet No / Kelime ara..." onkeyup="handleSearch()">
     </div>
     
+    <a href="tutorial.html" class="btn" style="border-color: var(--accent-gold); color: var(--accent-gold-light);" title="Gramer Ön Bilgi Rehberi (Sarf ve Nahiv Konuları)">
+      🎓 <span>Ön Bilgi Rehberi</span>
+    </a>
+    
     <button class="btn" onclick="openJumpModal()" title="Ayet Seç ve Atla">
       📑 <span>Ayet Seç</span>
     </button>
@@ -1442,11 +1446,27 @@ updateSlideToolbar = function() {
   }
 };
 
+function checkUrlHash() {
+  const hash = window.location.hash;
+  if (hash) {
+    const match = hash.match(/ayet-(\d+)/);
+    if (match) {
+      const num = parseInt(match[1]);
+      if (num >= 1 && num <= 110) {
+        jumpToVerse(num);
+      }
+    }
+  }
+}
+
+window.addEventListener('hashchange', checkUrlHash);
+
 const originalInitApp = initApp;
 initApp = function() {
   originalInitApp();
   setupMobileGestures();
   updateSlideToolbar();
+  checkUrlHash();
 };
 
 window.onload = initApp;
