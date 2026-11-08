@@ -3,6 +3,7 @@ import { renderExerciseBox } from './components/ExerciseRenderer';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. TEMA DEĞİŞTİRME DÜĞMESİ (themeBtn)
+  // index.html ve tutorial.html ile birebir aynı 'kehf-theme' anahtarı kullanılır
   const themeBtn = document.getElementById('themeBtn');
   const themes = ['mushaf', 'dark', 'light'];
   const LS_THEME = 'kehf-theme';
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="book-badge">HALKA ${book.level}</div>
         <h2>${book.title}</h2>
         <div class="book-ar-title ar">${book.arabicTitle}</div>
+        <div class="book-subtitle">${book.subtitle}</div>
         <p class="book-desc">${book.desc}</p>
       </div>
       <div class="chapters-list"></div>
@@ -119,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="lesson-body-section">
               <div class="lesson-theory">${lesson.explanationHtml}</div>
               <div class="lesson-examples">
-                <h5>📖 3 Seviyeli Örnek İncelemesi:</h5>
+                <h5>📖 Konu Örnekleri ve Tahlilleri (${lesson.examples.length} Örnek):</h5>
                 <div class="examples-grid">
                   ${lesson.examples.map(ex => `
                     <div class="example-box level-${ex.level}">

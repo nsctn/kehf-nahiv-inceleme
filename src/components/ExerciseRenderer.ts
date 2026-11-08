@@ -92,7 +92,6 @@ export function renderExerciseBox(
     input.onfocus = () => renderArabicAssistantKeyboard(input, kbSlot);
 
     checkBtn.onclick = () => {
-      // Hareke değişikliği gerektiren sorularda hareke kontrolü yapılır
       const isCorrect = isTextMatch(input.value, exercise.acceptedAnswers, false);
       showFeedback(feedback, isCorrect, exercise.acceptedAnswers[0], exercise.explanation);
       if (onCompleted) onCompleted(isCorrect);
@@ -120,7 +119,6 @@ export function renderExerciseBox(
     input.onfocus = () => renderArabicAssistantKeyboard(input, kbSlot);
 
     checkBtn.onclick = () => {
-      // Hata düzeltme sorularında hareke hatasını tespit için requireHarakat = true
       const isCorrect = isTextMatch(input.value, exercise.acceptedCorrectSentences, true);
       showFeedback(feedback, isCorrect, exercise.acceptedCorrectSentences[0], exercise.explanationOfError);
       if (onCompleted) onCompleted(isCorrect);
@@ -150,7 +148,8 @@ export function renderExerciseBox(
       const fInput = document.createElement('input');
       fInput.type = 'text';
       fInput.className = 'matrix-field-input';
-      fInput.placeholder = 'Cevabınız...';
+      fInput.placeholder = field.hint ? `${field.hint}...` : 'Cevabınız...';
+      if (field.hint) fInput.title = `İpucu: ${field.hint}`;
       fInput.dataset.fieldIndex = i.toString();
       inputs.push(fInput);
 
@@ -216,18 +215,26 @@ export function renderExerciseBox(
 
     const rootRow = document.createElement('div');
     rootRow.className = 'matrix-field-row';
-    rootRow.innerHTML = `<span class="matrix-field-label">Kök (Madde):</span><input type="text" class="matrix-field-input ar" id="rootInput" placeholder="ف-ع-ل">`;
+    const rootInp = document.createElement('input');
+    rootInp.type = 'text';
+    rootInp.className = 'matrix-field-input ar';
+    rootInp.placeholder = 'ف-ع-ل';
+    rootRow.innerHTML = `<span class="matrix-field-label">Kök (Madde):</span>`;
+    rootRow.appendChild(rootInp);
 
     const weznRow = document.createElement('div');
     weznRow.className = 'matrix-field-row';
-    weznRow.innerHTML = `<span class="matrix-field-label">Vezin:</span><input type="text" class="matrix-field-input ar" id="weznInput" placeholder="فَاعِل...">`;
+    const weznInp = document.createElement('input');
+    weznInp.type = 'text';
+    weznInp.className = 'matrix-field-input ar';
+    weznInp.placeholder = 'فَاعِل...';
+    weznRow.innerHTML = `<span class="matrix-field-label">Vezin:</span>`;
+    weznRow.appendChild(weznInp);
 
     grid.appendChild(rootRow);
     grid.appendChild(weznRow);
     body.appendChild(grid);
 
-    const rootInp = grid.querySelector('#rootInput') as HTMLInputElement;
-    const weznInp = grid.querySelector('#weznInput') as HTMLInputElement;
     rootInp.onfocus = () => renderArabicAssistantKeyboard(rootInp, kbSlot);
     weznInp.onfocus = () => renderArabicAssistantKeyboard(weznInp, kbSlot);
 
