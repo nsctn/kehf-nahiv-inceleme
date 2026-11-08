@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && cp tutorial-*.js dist/ 2>/dev/null || true",
+    "build": "tsc && vite build && (cp tutorial-*.js dist/ 2>/dev/null || true)",
     "preview": "vite preview"
   },
   "devDependencies": {
