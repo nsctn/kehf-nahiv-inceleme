@@ -143,9 +143,10 @@ export const BOOK_2: Book = {
             },
             {
               level: "quran",
-              arabic: "وَلَا تَنْهَ عَنْ خُلُقٍ وَتَأْتِيَ مِثْلَهُ",
-              translation: "Bir ahlaktan nehyedip de aynısını kendin yapma!",
-              analysisText: "تَنْهَ: Nehiy lâm'ı ile meczûm, elifin hazfi alâmettir."
+              arabic: "إِنَّ السَّاعَةَ آتِيَةٌ أَكَادُ أُخْفِيهَا لِتُجْزَىٰ كُلُّ نَفْسٍ بِمَا تَسْعَىٰ",
+              translation: "Kıyamet mutlaka gelecektir... Herkes neye koşup çabalıyorsa onunla karşılık görsün diye.",
+              analysisText: "تَسْعَىٰ: Sonu elif-i maksûra ile biten muzâri fiildir; merfûdur ve ref' alâmeti taazzür sebebiyle takdîrî dammedir.",
+              verseRef: { sura: 20, ayah: 15 }
             }
           ],
           exercises: [

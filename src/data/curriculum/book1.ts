@@ -561,7 +561,7 @@ export const BOOK_1: Book = {
           ],
           exercises: [
             {
-              id: "b1-l7-ex1",
+              id: "b1-l8-ex1",
               type: "fill_conjugate",
               prompt: "Aşağıdaki cümlede İnne'nin ismini doğru mansûb harekesiyle yazın:",
               sentenceWithBlank: "إِنَّ [___] مُمْتِعٌ جِدًّا .",
@@ -580,7 +580,7 @@ export const BOOK_1: Book = {
       title: "İsmin Mansûb Olduğu Haller",
       arabicTitle: "نَصْبُ الاسْمِ وَمَوَاضِعُهُ",
       icon: "📐",
-      desc: "5 Mef'ûl (bih, mutlak, leh, fih, maah), Hâl, Temyîz ve Müstesnâ.",
+      desc: "4 Mef'ûl (bih, mutlak, fîh, leh), Hâl ve Temyîz.",
       lessons: [
         {
           id: "b1-l8-mefuller",
@@ -629,7 +629,7 @@ export const BOOK_1: Book = {
               level: "quran",
               arabic: "سَخَّرَهَا عَلَيْهِمْ سَبْعَ لَيَالٍ وَثَمَانِيَةَ أَيَّامٍ حُسُومًا",
               translation: "Onu onların üzerine yedi gece ve sekiz gün kesintisiz estirdi.",
-              analysisText: "سَبْعَ: Zaman bildiren mef'ûlün fîh olarak fetha ile mansûbdur.",
+              analysisText: "سَبْعَ لَيَالٍ: Zaman zarfı (mef'ûlün fîh) olup سَبْعَ kelimesi fetha ile mansûb, لَيَالٍ kelimesi muzâfun ileyh olarak mecrûrdur.",
               verseRef: { sura: 69, ayah: 7 }
             },
             {

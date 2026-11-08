@@ -90,7 +90,7 @@ export const BOOK_3: Book = {
               targetWord: "قَالَ",
               rootAnswers: ["ق-و-ل", "قول"],
               weznAnswers: ["فَعَلَ", "فعل"],
-              babName: "Ecvef-i Vâvî (Sülâsî)",
+              babName: "Ecvef-i Vâvî",
               explanation: "قَالَ fiilinin aslı قَوَلَ olup ecvef-i vâvîdir; vâv harfi harekeli ve öncesi fethalı olduğu için elife kalb edilmiştir."
             }
           ]
@@ -180,7 +180,7 @@ export const BOOK_3: Book = {
       title: "Sülâsî Mezîd Bâblar (Türetim Sarfı)",
       arabicTitle: "أَبْوَابُ الثُّلَاثِيِّ الْمَزِيدِ فِيهِ",
       icon: "🏗️",
-      desc: "Üç harfli köke 1, 2 veya 3 harf eklenerek türetilen İf'âl, Tef'îl, Mufâ'ale, İnfi'âl, İfti'âl, Tefa'ul, Tefâ'ul ve İstif'âl bâbları.",
+      desc: "Üç harfli köke 1, 2 veya 3 harf eklenerek türetilen İf'âl, Tef'îl, Mufâ'ale, İnfi'âl, İfti'âl, Tefa'ul ve İstif'âl bâbları.",
       lessons: [
         {
           id: "b3-l3-rubai-mezidler",
@@ -250,7 +250,7 @@ export const BOOK_3: Book = {
               targetWord: "أَخْرَجَ",
               rootAnswers: ["خ-ر-ج", "خرج"],
               weznAnswers: ["أَفْعَلَ", "أفعل"],
-              babName: "İf'âl Bâbı",
+              babName: "İf'âl",
               explanation: "Kökü خ-ر-ج olup başına ziyâde hemze gelerek أَفْعَلَ vezninde İf'âl bâbına girmiştir."
             }
           ]
