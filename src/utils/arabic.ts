@@ -1,5 +1,5 @@
 /**
- * Arapça metin karşılaştırma ve normalizasyon yardımcıları
+ * Metin karşılaştırma, normalizasyon ve i'râb künyesi doğrulama yardımcıları
  */
 
 export function normalizeArabic(text: string, stripHarakat: boolean = true): string {
@@ -9,41 +9,67 @@ export function normalizeArabic(text: string, stripHarakat: boolean = true): str
   // Unicode normalizasyonu
   str = str.normalize('NFKC');
 
-  // Farklı elifleri birleştirme: أ إ آ -> ا
+  // Farklı elifleri birleştirme: أ إ آ ٱ -> ا
   str = str.replace(/[أإآٱ]/g, 'ا');
-
-  // Tâ-i merbûta: ة -> ه (kullanıcı girdiğinde tolere edilebilir)
-  // str = str.replace(/ة/g, 'ه'); // isteğe bağlı
 
   // Yâ-i maksûra: ى -> ي
   str = str.replace(/ى/g, 'ي');
 
   if (stripHarakat) {
     // Harekeleri ve tenvinleri kaldır (Fetha, Damme, Kesra, Sukun, Şedde vb.)
-    // Harakat aralığı: U+064B - U+065F, U+0670
     str = str.replace(/[\u064B-\u065F\u0670]/g, '');
   }
 
-  // Fazla boşlukları temizle
+  // Noktalama ve fazla boşlukları temizle
+  str = str.replace(/[.,،؛؟]/g, '');
   str = str.replace(/\s+/g, ' ');
 
-  return str;
+  return str.trim();
 }
 
-export function isArabicMatch(userInput: string, acceptedList: string[]): boolean {
+/**
+ * Türkçe / Latin alfabeli metinleri ve i'râb künyesi terimlerini normalleştirir
+ * (şapkalı â, î, û, kesme işareti, küçük harf ve Türkçe i/ı dönüşümleri)
+ */
+export function normalizeLatin(text: string): string {
+  if (!text) return '';
+  let str = text.trim();
+  // Kesme işaretlerini ve benzer karakterleri temizle
+  str = str.replace(/['’`ʼ]/g, '');
+  // Şapkalı ünlüleri düzelt
+  str = str.replace(/[âÂ]/g, 'a')
+           .replace(/[îÎ]/g, 'i')
+           .replace(/[ûÛ]/g, 'u');
+  // Türkçe küçük harf dönüşümü
+  str = str.toLocaleLowerCase('tr');
+  str = str.replace(/\s+/g, ' ');
+  return str.trim();
+}
+
+export function isTextMatch(userInput: string, acceptedList: string[], requireHarakat: boolean = false): boolean {
   if (!userInput) return false;
+
   const cleanUserStrict = userInput.trim().normalize('NFKC');
-  const cleanUserLoose = normalizeArabic(userInput, true);
+  const cleanUserArabicLoose = normalizeArabic(userInput, true);
+  const cleanUserLatin = normalizeLatin(userInput);
 
   for (const accepted of acceptedList) {
     const accStrict = accepted.trim().normalize('NFKC');
-    const accLoose = normalizeArabic(accepted, true);
 
-    // 1. Tam birebir eşleşme (harekeli dahil)
+    // 1. Birebir eşleşme (harekeli dahil)
     if (cleanUserStrict === accStrict) return true;
 
-    // 2. Harekeler olmasa bile harf iskeleti tam eşleşme
-    if (cleanUserLoose === accLoose) return true;
+    // Latin / Türkçe cevap kontrolü (örn. "vâv" == "vav", "kâne'nin ismi" == "kanenin ismi")
+    const accLatin = normalizeLatin(accepted);
+    if (cleanUserLatin === accLatin && cleanUserLatin.length > 0) return true;
+
+    // 2. Arapça gevşek kontrol (Yalnızca hareke zorunlu tutulmamışsa)
+    if (!requireHarakat) {
+      const accArabicLoose = normalizeArabic(accepted, true);
+      if (cleanUserArabicLoose === accArabicLoose && cleanUserArabicLoose.length > 0) {
+        return true;
+      }
+    }
   }
 
   return false;

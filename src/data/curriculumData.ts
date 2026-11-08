@@ -33,13 +33,13 @@ export const DURUS_CURRICULUM: Book[] = [
               ],
               ruleBox: "Bir kelimenin başına الـ (elif-lâm) veya harf-i cer geliyorsa İSİM; başına قَدْ veya سَـ geliyorsa FİİL; ikisini de kabul etmiyorsa HARF'tir.",
               transformation: {
-                beforeLabel: "Yalın Kök",
+                beforeLabel: "Fiil Örneği (Zaman Bildirir)",
                 beforeArabic: "كَتَبَ",
-                beforeTr: "Yazdı (Zaman bildiren iş → Fiil)",
-                afterLabel: "İsimleşmiş Hâl",
+                beforeTr: "Yazdı (Geçmiş zamanlı fiil)",
+                afterLabel: "İsim Karşılaştırması (Varlık Bildirir)",
                 afterArabic: "الْكِتَابُ",
-                afterTr: "Kitap (Zaman bildirmez, elif-lâm aldı → İsim)",
-                highlightExplanation: "Fiil zamana bağlı bir hareket bildirirken, isim varlığın kendisine işaret eder."
+                afterTr: "Kitap (Zaman bildirmez, elif-lâm takısı alır)",
+                highlightExplanation: "Aynı ك-ت-ب kökünden türese de fiil zamanlı işi, isim ise müstakil varlığı gösterir."
               }
             },
             explanationHtml: `
@@ -75,7 +75,7 @@ export const DURUS_CURRICULUM: Book[] = [
               {
                 id: "b1-l1-ex1",
                 type: "fill_conjugate",
-                prompt: "Aşağıdaki cümlede parantez içindeki kelimeyi fiilin mef'ûlü (ismin mansûb hâli) olacak şekilde boşluğa yazın:",
+                prompt: "Aşağıdaki cümlede belirtilen kelimeyi fiilin mef'ûlü (ismin fethalı mansûb hâli) olacak şekilde boşluğa yazın:",
                 sentenceWithBlank: "قَرَأَ الطَّالِبُ [___] فِي الْمَسْجِدِ .",
                 baseWord: "الكتاب",
                 acceptedAnswers: ["الْكِتَابَ", "الكتابَ", "الكتاب"],
@@ -87,7 +87,7 @@ export const DURUS_CURRICULUM: Book[] = [
                 type: "error_correction",
                 prompt: "Aşağıdaki cümledeki hareke hatasını tespit edip cümlenin doğrusunu yazın:",
                 incorrectSentence: "ذَهَبَ إِلَى الْمَدْرَسَةُ .",
-                acceptedCorrectSentences: ["ذَهَبَ إِلَى الْمَدْرَسَةِ", "ذهب الى المدرسة", "ذهب إلى المدرسة"],
+                acceptedCorrectSentences: ["ذَهَبَ إِلَى الْمَدْرَسَةِ", "ذهب الى المدرسةِ", "ذهب إلى المدرسةِ"],
                 errorTarget: "الْمَدْرَسَةُ",
                 explanationOfError: "Harf-i cerden (إِلَى) sonra gelen isim daima kesra ile mecrûr olur: الْمَدْرَسَةِ.",
                 explanation: "Harf-i cerler ismin sonunu kesra yapar."
@@ -163,7 +163,7 @@ export const DURUS_CURRICULUM: Book[] = [
               {
                 id: "b1-l2-ex1",
                 type: "fill_conjugate",
-                prompt: "Parantez içindeki kelimeyi nâkıs fiilin haberi olacak şekilde uygun hâle sokup yazın:",
+                prompt: "Aşağıda verilen kök kelimeyi [حاضرون] nâkıs fiilin haberi olacak şekilde uygun hâle sokup boşluğa yazın:",
                 sentenceWithBlank: "كَانَ الْمُعَلِّمُونَ [___] فِي الْفَصْلِ .",
                 baseWord: "حاضرون",
                 acceptedAnswers: ["حَاضِرِينَ", "حاضرين"],
@@ -177,7 +177,7 @@ export const DURUS_CURRICULUM: Book[] = [
                 targetSentence: "وَكَانَ أَبُوهُمَا صَالِحًا",
                 targetWord: "أَبُوهُمَا",
                 fields: [
-                  { label: "Cümledeki Görevi", acceptedAnswers: ["kâne'nin ismi", "kanenin ismi", "kane ismi", "اسم كان"] },
+                  { label: "Cümledeki Görevi", acceptedAnswers: ["kâne'nin ismi", "kanenin ismi", "kane ismi", "kâne ismi", "اسم كان"] },
                   { label: "İ'râb Hâli", acceptedAnswers: ["merfû", "merfu", "ref", "مرفوع"] },
                   { label: "İ'râb Alâmeti", acceptedAnswers: ["vav", "vâv", "الواو"] }
                 ],
@@ -188,7 +188,7 @@ export const DURUS_CURRICULUM: Book[] = [
                 type: "error_correction",
                 prompt: "Aşağıdaki cümledeki hatayı tespit edip doğru cümleyi yazın:",
                 incorrectSentence: "أَصْبَحَ الْمَاءُ بَارِدٌ .",
-                acceptedCorrectSentences: ["أَصْبَحَ الْمَاءُ بَارِدًا", "اصبح الماء باردا"],
+                acceptedCorrectSentences: ["أَصْبَحَ الْمَاءُ بَارِدًا", "اصبح الماء باردا", "أصبح الماء بارداً"],
                 errorTarget: "بَارِدٌ",
                 explanationOfError: "Esbaha fiilinin haberi merfû değil fetha ile mansûb olmalıdır: بَارِدًا.",
                 explanation: "Nâkıs fiilin haberi daima mansûbdur."
@@ -221,7 +221,7 @@ export const DURUS_CURRICULUM: Book[] = [
     level: 3,
     title: "3. Kitap: Sarf ve Nahiv Sentezi",
     arabicTitle: "الكتاب الثالث: بنية الكلمة والمشتقات",
-    subtitle: "Sülâsî/Mezîd Bâblar, Sahih/Mu'tel Fiil Çekimi ve 7 Müştak İsim",
+    subtitle: "Sülâsî/Mezîd Bâblar, Sahih/Mu'tel Fiil Çekimi ve Müştak İsimler",
     desc: "Kelimelerin kökü, vezni, bâbı ile cümledeki fâil ve mef'ûl amellerinin birleştirildiği aşama.",
     chapters: [
       {
@@ -230,7 +230,7 @@ export const DURUS_CURRICULUM: Book[] = [
         title: "Müştak İsimler",
         arabicTitle: "الأسماء المشتقة",
         icon: "🧱",
-        desc: "İsm-i fâil, ism-i mef'ûl, sıfat-ı müşebbehe ve ism-i tafdîl.",
+        desc: "İsm-i fâil, ism-i mef'ûl, sıfat-ı müşebbehe, mübalağa, ism-i tafdîl, zaman-mekân ve âlet isimleri.",
         lessons: []
       }
     ]

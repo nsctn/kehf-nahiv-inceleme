@@ -1,5 +1,5 @@
 import { Exercise } from '../types/curriculum';
-import { isArabicMatch } from '../utils/arabic';
+import { isTextMatch } from '../utils/arabic';
 import { renderArabicAssistantKeyboard } from './ArabicKeyboard';
 
 export function renderExerciseBox(
@@ -44,6 +44,26 @@ export function renderExerciseBox(
   checkBtn.className = 'btn btn-primary check-btn';
   checkBtn.innerHTML = '✨ Cevabı Kontrol Et';
 
+  // Hint container (if exercise has hint)
+  let hintContainer: HTMLElement | null = null;
+  const hintText = 'hint' in exercise ? (exercise as { hint?: string }).hint : undefined;
+  if (hintText) {
+    hintContainer = document.createElement('div');
+    hintContainer.className = 'exercise-hint-wrap';
+    hintContainer.innerHTML = `
+      <button type="button" class="btn-hint-toggle">💡 İpucu Göster</button>
+      <div class="hint-content" style="display: none;">${hintText}</div>
+    `;
+    const toggleBtn = hintContainer.querySelector('.btn-hint-toggle') as HTMLButtonElement;
+    const content = hintContainer.querySelector('.hint-content') as HTMLElement;
+    toggleBtn.onclick = () => {
+      const isHidden = content.style.display === 'none';
+      content.style.display = isHidden ? 'block' : 'none';
+      toggleBtn.textContent = isHidden ? '💡 İpucunu Gizle' : '💡 İpucu Göster';
+    };
+  }
+
+  // 1. FILL CONJUGATE
   if (exercise.type === 'fill_conjugate') {
     const blankWrap = document.createElement('div');
     blankWrap.className = 'exercise-blank-row';
@@ -56,7 +76,7 @@ export function renderExerciseBox(
     const input = document.createElement('input');
     input.type = 'text';
     input.className = 'exercise-input ar';
-    input.placeholder = `(${exercise.baseWord})`;
+    input.placeholder = `[${exercise.baseWord}]`;
     input.autocomplete = 'off';
     input.autocapitalize = 'off';
 
@@ -72,11 +92,14 @@ export function renderExerciseBox(
     input.onfocus = () => renderArabicAssistantKeyboard(input, kbSlot);
 
     checkBtn.onclick = () => {
-      const isCorrect = isArabicMatch(input.value, exercise.acceptedAnswers);
+      // Hareke değişikliği gerektiren sorularda hareke kontrolü yapılır
+      const isCorrect = isTextMatch(input.value, exercise.acceptedAnswers, false);
       showFeedback(feedback, isCorrect, exercise.acceptedAnswers[0], exercise.explanation);
       if (onCompleted) onCompleted(isCorrect);
     };
-  } else if (exercise.type === 'error_correction') {
+  }
+  // 2. ERROR CORRECTION
+  else if (exercise.type === 'error_correction') {
     const sentenceBox = document.createElement('div');
     sentenceBox.className = 'exercise-target-sentence ar';
     sentenceBox.innerHTML = exercise.incorrectSentence;
@@ -97,11 +120,14 @@ export function renderExerciseBox(
     input.onfocus = () => renderArabicAssistantKeyboard(input, kbSlot);
 
     checkBtn.onclick = () => {
-      const isCorrect = isArabicMatch(input.value, exercise.acceptedCorrectSentences);
+      // Hata düzeltme sorularında hareke hatasını tespit için requireHarakat = true
+      const isCorrect = isTextMatch(input.value, exercise.acceptedCorrectSentences, true);
       showFeedback(feedback, isCorrect, exercise.acceptedCorrectSentences[0], exercise.explanationOfError);
       if (onCompleted) onCompleted(isCorrect);
     };
-  } else if (exercise.type === 'irab_matrix') {
+  }
+  // 3. IRAB MATRIX
+  else if (exercise.type === 'irab_matrix') {
     const sentenceBox = document.createElement('div');
     sentenceBox.className = 'exercise-target-sentence ar';
     sentenceBox.innerHTML = exercise.targetSentence.replace(
@@ -140,7 +166,7 @@ export function renderExerciseBox(
 
       inputs.forEach((inp, idx) => {
         const field = exercise.fields[idx];
-        const ok = isArabicMatch(inp.value, field.acceptedAnswers);
+        const ok = isTextMatch(inp.value, field.acceptedAnswers, false);
         inp.classList.toggle('correct-input', ok);
         inp.classList.toggle('wrong-input', !ok);
         expectedTexts.push(`${field.label}: ${field.acceptedAnswers[0]}`);
@@ -150,6 +176,121 @@ export function renderExerciseBox(
       showFeedback(feedback, allCorrect, expectedTexts.join(' | '), exercise.explanation);
       if (onCompleted) onCompleted(allCorrect);
     };
+  }
+  // 4. SENTENCE TRANSFORM
+  else if (exercise.type === 'sentence_transform') {
+    const sentenceBox = document.createElement('div');
+    sentenceBox.className = 'exercise-target-sentence ar';
+    sentenceBox.textContent = exercise.inputSentence;
+    body.appendChild(sentenceBox);
+
+    const inputWrap = document.createElement('div');
+    inputWrap.className = 'correction-input-wrap';
+    const label = document.createElement('label');
+    label.textContent = exercise.instruction;
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'exercise-input ar';
+    input.placeholder = 'Dönüştürülmüş hâli...';
+    inputWrap.appendChild(label);
+    inputWrap.appendChild(input);
+    body.appendChild(inputWrap);
+
+    input.onfocus = () => renderArabicAssistantKeyboard(input, kbSlot);
+
+    checkBtn.onclick = () => {
+      const isCorrect = isTextMatch(input.value, exercise.acceptedAnswers, false);
+      showFeedback(feedback, isCorrect, exercise.acceptedAnswers[0], exercise.explanation);
+      if (onCompleted) onCompleted(isCorrect);
+    };
+  }
+  // 5. SARF WEZN & ROOT
+  else if (exercise.type === 'sarf_wezn_root') {
+    const wordBox = document.createElement('div');
+    wordBox.className = 'exercise-target-sentence ar';
+    wordBox.innerHTML = `Kelime: <span class="matrix-target-word">${exercise.targetWord}</span>`;
+    body.appendChild(wordBox);
+
+    const grid = document.createElement('div');
+    grid.className = 'irab-matrix-grid';
+
+    const rootRow = document.createElement('div');
+    rootRow.className = 'matrix-field-row';
+    rootRow.innerHTML = `<span class="matrix-field-label">Kök (Madde):</span><input type="text" class="matrix-field-input ar" id="rootInput" placeholder="ف-ع-ل">`;
+
+    const weznRow = document.createElement('div');
+    weznRow.className = 'matrix-field-row';
+    weznRow.innerHTML = `<span class="matrix-field-label">Vezin:</span><input type="text" class="matrix-field-input ar" id="weznInput" placeholder="فَاعِل...">`;
+
+    grid.appendChild(rootRow);
+    grid.appendChild(weznRow);
+    body.appendChild(grid);
+
+    const rootInp = grid.querySelector('#rootInput') as HTMLInputElement;
+    const weznInp = grid.querySelector('#weznInput') as HTMLInputElement;
+    rootInp.onfocus = () => renderArabicAssistantKeyboard(rootInp, kbSlot);
+    weznInp.onfocus = () => renderArabicAssistantKeyboard(weznInp, kbSlot);
+
+    checkBtn.onclick = () => {
+      const rootOk = isTextMatch(rootInp.value, exercise.rootAnswers, false);
+      const weznOk = isTextMatch(weznInp.value, exercise.weznAnswers, false);
+      rootInp.classList.toggle('correct-input', rootOk);
+      rootInp.classList.toggle('wrong-input', !rootOk);
+      weznInp.classList.toggle('correct-input', weznOk);
+      weznInp.classList.toggle('wrong-input', !weznOk);
+
+      const allOk = rootOk && weznOk;
+      showFeedback(
+        feedback,
+        allOk,
+        `Kök: ${exercise.rootAnswers[0]} | Vezin: ${exercise.weznAnswers[0]}${exercise.babName ? ` (${exercise.babName} Bâbı)` : ''}`,
+        exercise.explanation
+      );
+      if (onCompleted) onCompleted(allOk);
+    };
+  }
+  // 6. TEXT TOKEN HUNT
+  else if (exercise.type === 'text_token_hunt') {
+    const passageBox = document.createElement('div');
+    passageBox.className = 'token-hunt-passage ar';
+    const tokens = exercise.passage.split(/\s+/);
+    const selectedIndices = new Set<number>();
+
+    tokens.forEach((tok, idx) => {
+      const tokSpan = document.createElement('span');
+      tokSpan.className = 'quran-word';
+      tokSpan.textContent = tok;
+      tokSpan.onclick = () => {
+        if (selectedIndices.has(idx)) {
+          selectedIndices.delete(idx);
+          tokSpan.classList.remove('active');
+        } else {
+          selectedIndices.add(idx);
+          tokSpan.classList.add('active');
+        }
+      };
+      passageBox.appendChild(tokSpan);
+    });
+    body.appendChild(passageBox);
+
+    checkBtn.onclick = () => {
+      const targetSet = new Set(exercise.targetIndices);
+      const isCorrect =
+        selectedIndices.size === targetSet.size &&
+        [...selectedIndices].every(i => targetSet.has(i));
+
+      showFeedback(
+        feedback,
+        isCorrect,
+        exercise.targetIndices.map(i => tokens[i]).join(' , '),
+        exercise.targetTokenExplanation || exercise.explanation
+      );
+      if (onCompleted) onCompleted(isCorrect);
+    };
+  }
+
+  if (hintContainer) {
+    body.appendChild(hintContainer);
   }
 
   body.appendChild(kbSlot);

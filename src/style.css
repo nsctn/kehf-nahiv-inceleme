@@ -247,3 +247,49 @@ body {
 .exercise-target-sentence { font-size: 1.6rem; text-align: center; margin-bottom: 1rem; }
 .correction-input-wrap { display: flex; flex-direction: column; gap: .4rem; }
 .correction-input-wrap label { font-size: .85rem; color: var(--text-muted); }
+/* Chapter Coming Soon Placeholder */
+.chapter-coming-soon {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem;
+  background: var(--bg-secondary);
+  border: 1px dashed var(--border-color);
+  border-radius: 10px;
+  color: var(--text-muted);
+}
+.cs-icon { font-size: 1.6rem; opacity: .8; }
+.chapter-coming-soon strong { color: var(--text-secondary); display: block; margin-bottom: .2rem; font-size: .92rem; }
+.chapter-coming-soon p { font-size: .82rem; margin: 0; }
+
+/* Hint Toggle Styling */
+.exercise-hint-wrap { margin-bottom: .8rem; }
+.btn-hint-toggle {
+  background: transparent; border: 1px solid var(--border-color);
+  color: var(--accent-gold-light); font-size: .78rem; font-weight: 600;
+  padding: .25rem .6rem; border-radius: 6px; cursor: pointer;
+  transition: all .2s;
+}
+.btn-hint-toggle:hover { background: var(--bg-elevated); border-color: var(--accent-gold); }
+.hint-content {
+  margin-top: .5rem; padding: .6rem .8rem; background: var(--bg-elevated);
+  border-left: 3px solid var(--accent-teal); border-radius: 6px;
+  font-size: .84rem; color: var(--text-secondary);
+}
+
+/* Token Hunt Style */
+.token-hunt-passage {
+  padding: 1rem; background: var(--bg-card); border: 1px solid var(--border-color);
+  border-radius: 10px; font-size: 1.8rem; line-height: 2.2; text-align: right;
+  margin-bottom: 1rem;
+}
+.token-hunt-passage .quran-word {
+  display: inline-block; padding: 0 4px; margin: 0 2px; border-radius: 6px;
+  cursor: pointer; transition: all .2s; border: 1px solid transparent;
+}
+.token-hunt-passage .quran-word:hover {
+  background: var(--highlight-word); border-color: var(--accent-gold);
+}
+.token-hunt-passage .quran-word.active {
+  background: var(--accent-gold); color: #0a1f18; font-weight: bold;
+}
