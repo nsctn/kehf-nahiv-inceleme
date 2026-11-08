@@ -1,3 +1,4 @@
+import './style.css';
 import { DURUS_CURRICULUM } from './data/curriculumData';
 import { renderExerciseBox } from './components/ExerciseRenderer';
 
