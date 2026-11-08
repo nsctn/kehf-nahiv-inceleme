@@ -629,7 +629,7 @@ export const BOOK_1: Book = {
               level: "quran",
               arabic: "سَخَّرَهَا عَلَيْهِمْ سَبْعَ لَيَالٍ وَثَمَانِيَةَ أَيَّامٍ حُسُومًا",
               translation: "Onu onların üzerine yedi gece ve sekiz gün kesintisiz estirdi.",
-              analysisText: "سَبْعَ لَيَالٍ: Zaman zarfı (mef'ûlün fîh) olup سَبْعَ kelimesi fetha ile mansûb, لَيَالٍ kelimesi muzâfun ileyh olarak mecrûrdur.",
+              analysisText: "سَبْعَ لَيَالٍ وَثَمَانِيَةَ أَيَّامٍ: Zaman bildiren mef'ûlün fîh grubudur; سَبْعَ fetha ile mansûb mef'ûlün fîh, ثَمَانِيَةَ ise ona atfedilmiş mansûb kelimedir.",
               verseRef: { sura: 69, ayah: 7 }
             },
             {

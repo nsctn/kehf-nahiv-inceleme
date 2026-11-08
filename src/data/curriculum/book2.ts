@@ -137,7 +137,7 @@ export const BOOK_2: Book = {
             },
             {
               level: "hadith",
-              arabic: "إِنَّ اللَّهَ يَرْضَى لَكُمْ ثَلَاثًا: يَرْضَى لَكُمْ أَنْ تَعْبُدُوهُ وَلَا تُشْرِكُوا بِهِ شَيْئًا",
+              arabic: "إِنَّ اللَّهَ يَرْضَى لَكُمْ ثَلَاثًا: أَنْ تَعْبُدُوهُ وَلَا تُشْرِكُوا بِهِ شَيْئًا",
               translation: "Şüphesiz Allah sizin için üç şeyden razı olur: O'na ibadet edip hiçbir şeyi ortak koşmamanızdan...",
               analysisText: "يَرْضَى: Âhiri elif-i maksûra ile biten muzâri fiildir; merfûdur ve ref' alâmeti taazzür sebebiyle elif üzerindeki takdîrî dammedir."
             },

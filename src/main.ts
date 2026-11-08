@@ -29,6 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const booksContainer = document.getElementById('booksContent');
   if (!booksContainer) return;
 
+  const updateHeaderOffset = () => {
+    const header = document.querySelector('.app-header') as HTMLElement | null;
+    if (header) {
+      document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
+    }
+  };
+  updateHeaderOffset();
+  window.addEventListener('resize', updateHeaderOffset);
+
   if (bookNav) {
     const navItems = [
       { level: 0, label: '📚 Tüm Kitaplar' },
@@ -60,7 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
           sec.style.display = sec.id === `book-${level}` ? 'block' : 'none';
         }
       });
-      window.scrollTo({ top: (booksContainer.offsetTop - 120), behavior: 'smooth' });
+      const header = document.querySelector('.app-header') as HTMLElement | null;
+      const headerH = header ? header.offsetHeight : 70;
+      const navH = bookNav ? bookNav.offsetHeight : 50;
+      const scrollTarget = booksContainer.offsetTop - headerH - navH - 16;
+      window.scrollTo({ top: Math.max(0, scrollTarget), behavior: 'smooth' });
     });
   }
 
