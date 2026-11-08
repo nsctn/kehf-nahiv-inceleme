@@ -24,10 +24,47 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // 2. MÜFREDAT VE KİTAPLARIN RENDER EDİLMESİ
+  // 2. KİTAP NAVİGASYON FİLTRESİ
+  const bookNav = document.getElementById('bookNav');
   const booksContainer = document.getElementById('booksContent');
   if (!booksContainer) return;
 
+  if (bookNav) {
+    const navItems = [
+      { level: 0, label: '📚 Tüm Kitaplar' },
+      ...DURUS_CURRICULUM.map(b => ({
+        level: b.level,
+        label: `${b.level}. Kitap (${b.level === 1 ? 'Temel' : b.level === 2 ? 'Genişleyen' : b.level === 3 ? 'Sarf-Nahiv' : 'İleri Nahiv'})`
+      }))
+    ];
+
+    bookNav.innerHTML = navItems.map(item => `
+      <button class="book-nav-btn ${item.level === 0 ? 'active' : ''}" data-level="${item.level}" type="button">
+        ${item.label}
+      </button>
+    `).join('');
+
+    bookNav.addEventListener('click', (e) => {
+      const target = (e.target as HTMLElement).closest('.book-nav-btn') as HTMLButtonElement | null;
+      if (!target) return;
+      const level = parseInt(target.getAttribute('data-level') || '0', 10);
+
+      bookNav.querySelectorAll('.book-nav-btn').forEach(btn => btn.classList.remove('active'));
+      target.classList.add('active');
+
+      const allSections = document.querySelectorAll<HTMLElement>('.book-section');
+      allSections.forEach(sec => {
+        if (level === 0) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = sec.id === `book-${level}` ? 'block' : 'none';
+        }
+      });
+      window.scrollTo({ top: (booksContainer.offsetTop - 120), behavior: 'smooth' });
+    });
+  }
+
+  // 3. MÜFREDAT VE KİTAPLARIN RENDER EDİLMESİ
   booksContainer.innerHTML = '';
 
   DURUS_CURRICULUM.forEach((book) => {
