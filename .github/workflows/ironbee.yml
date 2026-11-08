@@ -27,9 +27,9 @@ jobs:
           verification_mode: platform
           verification_apply_fix: false
           # Where the app runs during the workflow: on this runner ...
-          app_install_command: true
-          app_build_command: true
-          app_start_command: python3 -m http.server 8080
-          app_port: 8080
+          # app_install_command: true
+          # app_build_command: true
+          # app_start_command: python3 -m http.server 8080
+          # app_port: 8080
           # ... or at a preview URL instead of the four lines above:
-           app_url: "https://nsctn.github.io/kehf-nahiv-inceleme/"
+          app_url: "https://nsctn.github.io/kehf-nahiv-inceleme/"
