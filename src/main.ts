@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const booksContainer = document.getElementById('booksContent');
   if (!booksContainer) return;
 
+  const header = document.querySelector('.app-header') as HTMLElement | null;
   const updateHeaderOffset = () => {
-    const header = document.querySelector('.app-header') as HTMLElement | null;
     if (header) {
       document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
     }
@@ -40,6 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', updateHeaderOffset);
   if ('fonts' in document) {
     document.fonts.ready.then(updateHeaderOffset);
+    document.fonts.addEventListener?.('loadingdone', updateHeaderOffset);
+  }
+  if (typeof ResizeObserver !== 'undefined' && header) {
+    new ResizeObserver(updateHeaderOffset).observe(header);
   }
 
   if (bookNav) {
@@ -73,12 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
           sec.style.display = sec.id === `book-${level}` ? 'block' : 'none';
         }
       });
-      const header = document.querySelector('.app-header') as HTMLElement | null;
-      const headerH = header ? header.offsetHeight : 70;
-      const navH = bookNav ? bookNav.offsetHeight : 50;
-      const containerRect = booksContainer.getBoundingClientRect();
-      const scrollTarget = containerRect.top + window.scrollY - headerH - navH - 16;
-      window.scrollTo({ top: Math.max(0, scrollTarget), behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
