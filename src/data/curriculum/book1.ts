@@ -627,10 +627,10 @@ export const BOOK_1: Book = {
             },
             {
               level: "quran",
-              arabic: "وَفُتِحَتِ أَبْوَابُهَا وَقَالَ لَهُمْ خَزَنَتُهَا",
-              translation: "Kapıları açıldı...",
-              analysisText: "أَبْوَابُ meçhul fiilden sonra nâib-i fâildir.",
-              verseRef: { sura: 39, ayah: 73 }
+              arabic: "سَخَّرَهَا عَلَيْهِمْ سَبْعَ لَيَالٍ وَثَمَانِيَةَ أَيَّامٍ حُسُومًا",
+              translation: "Onu onların üzerine yedi gece ve sekiz gün kesintisiz estirdi.",
+              analysisText: "سَبْعَ: Zaman bildiren mef'ûlün fîh olarak fetha ile mansûbdur.",
+              verseRef: { sura: 69, ayah: 7 }
             },
             {
               level: "quran",

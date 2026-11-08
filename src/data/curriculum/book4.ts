@@ -38,7 +38,7 @@ export const BOOK_4: Book = {
               beforeTr: "Kök harflerinin tamamı vezinde mevcuttur",
               afterLabel: "Emir Kipi (Orta Harf Düştü)",
               afterArabic: "قُلْ ➔ فُلْ",
-              afterTr: "Ayn harfi düşünce vezin de fe-le (فُلْ) haline gelir",
+              afterTr: "Ayn harfi düşünce vezin de iki harfli 'ful' (فُلْ) haline gelir",
               highlightExplanation: "Mîzânü's-sarfî'de aynü'l-fiil atılarak terazi denkleştirilir."
             }
           },
@@ -105,12 +105,12 @@ export const BOOK_4: Book = {
               "Kök harfi ز، د، ذ olduğunda ifti'âl tâ'sı Dâl (د) harfine döner: زَادَ ➔ ازْتَادَ ➔ ازْدَادَ.",
               "Kök harfi و، ي olduğunda illet harfi tâ'ya kalb edilir ve şeddelenir: وَقَى ➔ اوْتَقَى ➔ اتَّقَى."
             ],
-            ruleBox: "اصْطَبَرَ kelimesindeki Tâ harfi aslında ifti'âl vezninin Tâ'sıdır (ت), vezni yine اِفْتَعَلَ'dir.",
+            ruleBox: "اصْطَبَرَ kelimesindeki kalın Tâ (ط) harfi, ifti'âl vezninin ince tâ (ت) harfinin ıtbâk sebebiyle kalınlaşmış halidir; vezni yine اِفْتَعَلَ olarak kalır.",
             transformation: {
-              beforeLabel: "Kural Öncesi Asıl Şekil",
+              beforeLabel: "Kural Öncesi Asıl Şekil (İnce Tâ)",
               beforeArabic: "اصْتَبَرَ / ازْتَادَ / اوْتَقَى",
-              beforeTr: "Telaffuzu zor ve dilde uyumsuz yapı",
-              afterLabel: "İbdâl Sonrası Fasih Şekil",
+              beforeTr: "İnce ت harfiyle telaffuzu zor olan yapı",
+              afterLabel: "İbdâl Sonrası Fasih Şekil (Kalın Tâ)",
               afterArabic: "اصْطَبَرَ / ازْدَادَ / اتَّقَى",
               afterTr: "Ses uyumu (itbâk/cehr) sağlanarak harf dönüştürüldü",
               highlightExplanation: "Vezin tartılırken harf dönüştürülse bile vezin daima اِفْتَعَلَ olarak kalır."
@@ -204,9 +204,9 @@ export const BOOK_4: Book = {
           examples: [
             {
               level: "simple",
-              arabic: "مَا خَالِفٌ عَلِيٌّ وَعْدَهُ",
-              translation: "Ali sözünden dönmüş değildir.",
-              analysisText: "خَالِفٌ (ism-i fâil), عَلِيٌّ (fâil), وَعْدَهُ (mef'ûlün bih)."
+              arabic: "مَا حَافِظٌ زَيْدٌ عَهْدَهُ",
+              translation: "Zeyd ahdini/sözünü tutmuş değildir.",
+              analysisText: "حَافِظٌ (sülâsî ism-i fâil), زَيْدٌ (fâil olarak merfû), عَهْدَهُ (mef'ûlün bih olarak mansûb)."
             },
             {
               level: "hadith",

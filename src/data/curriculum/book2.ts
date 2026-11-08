@@ -373,7 +373,7 @@ export const BOOK_2: Book = {
               type: "error_correction",
               prompt: "Aşağıdaki cümlede ism-i menkûsun nasb harekesi hatasını düzeltin (fethasını belirginleştirin):",
               incorrectSentence: "احْتَرَمَ النَّاسُ الْمُحَامِي فِي دِفَاعِهِ .",
-              acceptedCorrectSentences: ["احْتَرَمَ النَّاسُ الْمُحَامِيَ فِي دِفَاعِهِ", "احترم الناس المحاميَ في دفاعه", "احترم الناس المحامي في دفاعه"],
+              acceptedCorrectSentences: ["احْتَرَمَ النَّاسُ الْمُحَامِيَ فِي دِفَاعِهِ", "احترم الناس المحاميَ في دفاعه"],
               errorTarget: "الْمُحَامِي",
               explanationOfError: "İsm-i menkûs mef'ûlün bih olarak mansûb olduğunda sonundaki yâ harfi açık fetha alır: الْمُحَامِيَ.",
               explanation: "Menkûs isim nasb anında açık fetha alır."

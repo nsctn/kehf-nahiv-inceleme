@@ -90,7 +90,7 @@ export const BOOK_3: Book = {
               targetWord: "قَالَ",
               rootAnswers: ["ق-و-ل", "قول"],
               weznAnswers: ["فَعَلَ", "فعل"],
-              babName: "1. Bâb (Ecvef)",
+              babName: "Ecvef-i Vâvî (Sülâsî)",
               explanation: "قَالَ fiilinin aslı قَوَلَ olup ecvef-i vâvîdir; vâv harfi harekeli ve öncesi fethalı olduğu için elife kalb edilmiştir."
             }
           ]
@@ -180,7 +180,7 @@ export const BOOK_3: Book = {
       title: "Sülâsî Mezîd Bâblar (Türetim Sarfı)",
       arabicTitle: "أَبْوَابُ الثُّلَاثِيِّ الْمَزِيدِ فِيهِ",
       icon: "🏗️",
-      desc: "Üç harfli köke 1, 2 veya 3 harf eklenerek türetilen İf'âl, Tef'îl, Mufâ'ale, İnfi'âl, İfti'âl, Tefa''ul, Tefâ'ul ve İstif'âl bâbları.",
+      desc: "Üç harfli köke 1, 2 veya 3 harf eklenerek türetilen İf'âl, Tef'îl, Mufâ'ale, İnfi'âl, İfti'âl, Tefa'ul, Tefâ'ul ve İstif'âl bâbları.",
       lessons: [
         {
           id: "b3-l3-rubai-mezidler",
@@ -232,7 +232,7 @@ export const BOOK_3: Book = {
               level: "hadith",
               arabic: "خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ",
               translation: "Sizin en hayırlınız Kur'an'ı öğrenen ve öğreteninizdir.",
-              analysisText: "تَعَلَّمَ (Tefa''ul), عَلَّمَ (Tef'îl babı)."
+              analysisText: "تَعَلَّمَ (Tefa'ul), عَلَّمَ (Tef'îl babı)."
             },
             {
               level: "quran",
@@ -260,7 +260,7 @@ export const BOOK_3: Book = {
           bookLevel: 3,
           chapterId: "b3-mezid-bablar",
           order: 4,
-          title: "5 ve 6 Harfli Bâblar: İnfi'âl, İfti'âl, Tefa''ul ve İstif'âl",
+          title: "5 ve 6 Harfli Bâblar: İnfi'âl, İfti'âl, Tefa'ul ve İstif'âl",
           arabicTitle: "الْخُمَاسِيُّ وَالسُّدَاسِيُّ: اِنْفِعَال، اِفْتِعَال، تَفَعُّل، اِسْتِفْعَال",
           desc: "Dönüşlülük (mutâvaat), gayret (iktisâb) ve talep anlamları taşıyan ileri türetim vezinleri.",
           starterCard: {
@@ -268,7 +268,7 @@ export const BOOK_3: Book = {
             focusPoints: [
               "İnfi'âl (اِنْفَعَلَ): Sadece mutâvaat (etkiyi kabul etme/dönüşlülük) içindir ve daima lâzımdır: كَسَرْتُهُ فَانْكَسَرَ (Kırdım, kırıldı).",
               "İfti'âl (اِفْتَعَلَ): Çaba, benimseme ve mutâvaat: جَمَعَ ➔ اِجْتَمَعَ (Toplandı).",
-              "Tefa''ul (تَفَعَّلَ): Tedricilik ve zorlanarak edinme (Tekellüf): تَعَلَّمَ (Adım adım öğrendi).",
+              "Tefa'ul (تَفَعَّلَ): Tedricilik ve zorlanarak edinme (Tekellüf): تَعَلَّمَ (Adım adım öğrendi).",
               "İstif'âl (اِسْتَفْعَلَ): Bir şeyi talep etme/istemek: غَفَرَ (Bağışladı) ➔ اِسْتَغْفَرَ (Bağışlanma diledi)."
             ],
             ruleBox: "İnfi'âl bâbı asla mef'ûl almaz (daima lâzımdır). İstif'âl babı ise genellikle 'talep' manası yükler.",
@@ -287,7 +287,7 @@ export const BOOK_3: Book = {
             <ul>
               <li><b>اِنْفِعَال (İnfi'âl):</b> Eylemin sonucunu kabullenme: <span class="ar">كَسَرَ ➔ انْكَسَرَ</span>.</li>
               <li><b>اِفْتِعَال (İfti'âl):</b> Kendi gayretiyle yapma: <span class="ar">كَسَبَ ➔ اكْتَسَبَ</span>.</li>
-              <li><b>تَفَعُّل (Tefa''ul):</b> Aşamalı ve gayretli eylem: <span class="ar">عَلِمَ ➔ تَعَلَّمَ</span>.</li>
+              <li><b>تَفَعُّل (Tefa'ul):</b> Aşamalı ve gayretli eylem: <span class="ar">عَلِمَ ➔ تَعَلَّمَ</span>.</li>
               <li><b>اِسْتِفْعَال (İstif'âl):</b> Talep ve arama: <span class="ar">غَفَرَ ➔ اسْتَغْفَرَ</span>.</li>
             </ul>
           `,
