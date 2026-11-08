@@ -137,9 +137,9 @@ export const BOOK_2: Book = {
             },
             {
               level: "hadith",
-              arabic: "وَإِنْ أَتَانِي يَمْشِي أَتَيْتُهُ هَرْوَلَةً",
-              translation: "Bana yürüyerek gelene ben koşarak varırım.",
-              analysisText: "Kudsi hadis metninde mu'tel fiil kullanımı."
+              arabic: "إِنَّ اللَّهَ يَرْضَى لَكُمْ ثَلَاثًا: يَرْضَى لَكُمْ أَنْ تَعْبُدُوهُ وَلَا تُشْرِكُوا بِهِ شَيْئًا",
+              translation: "Şüphesiz Allah sizin için üç şeyden razı olur: O'na ibadet edip hiçbir şeyi ortak koşmamanızdan...",
+              analysisText: "يَرْضَى: Âhiri elif-i maksûra ile biten muzâri fiildir; merfûdur ve ref' alâmeti taazzür sebebiyle elif üzerindeki takdîrî dammedir."
             },
             {
               level: "quran",
