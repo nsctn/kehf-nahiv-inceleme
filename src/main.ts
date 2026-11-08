@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   updateHeaderOffset();
   window.addEventListener('resize', updateHeaderOffset);
+  window.addEventListener('load', updateHeaderOffset);
+  if ('fonts' in document) {
+    document.fonts.ready.then(updateHeaderOffset);
+  }
 
   if (bookNav) {
     const navItems = [
@@ -72,7 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const header = document.querySelector('.app-header') as HTMLElement | null;
       const headerH = header ? header.offsetHeight : 70;
       const navH = bookNav ? bookNav.offsetHeight : 50;
-      const scrollTarget = booksContainer.offsetTop - headerH - navH - 16;
+      const containerRect = booksContainer.getBoundingClientRect();
+      const scrollTarget = containerRect.top + window.scrollY - headerH - navH - 16;
       window.scrollTo({ top: Math.max(0, scrollTarget), behavior: 'smooth' });
     });
   }
